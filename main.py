@@ -11,6 +11,14 @@ def choose_image():
 
 
 def resize_image():
+    if not image_path.get():
+        messagebox.showerror("No Image", "Please choose an image before resizing.")
+        return
+
+    if not width_entry.get() or not height_entry.get():
+        messagebox.showerror("Missing Input", "Please enter both width and height.")
+        return
+
     try:
         width = int(width_entry.get())
         height = int(height_entry.get())
@@ -31,8 +39,7 @@ def resize_image():
             messagebox.showinfo("Success", f"Image saved to:\n{save_path}")
 
     except Exception as e:
-        print(f"Error: {e}")
-
+        messagebox.showerror("Resize Failed", f"Something went wrong:\n{str(e)}")
 
 # App window
 app = tk.Tk()
