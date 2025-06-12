@@ -4,6 +4,7 @@ from PIL import Image, ImageTk
 
 
 def choose_image():
+    global target_size_label
     file_path = filedialog.askopenfilename(filetypes=[("Image files", "*.png *.jpg *.jpeg *.webp")])
     if file_path:
         image_path.set(file_path)
@@ -40,6 +41,8 @@ def resize_image():
         width = int(width_entry.get())
         height = int(height_entry.get())
 
+        target_size_label.config(text=f"Target: {width} x {height}")
+
         img = Image.open(image_path.get())
         print(f"Opened image: {img.format}, Size: {img.size}")
 
@@ -66,6 +69,7 @@ app.geometry("500x600")
 
 # StringVars
 image_path = tk.StringVar(value="No file selected")
+target_size_label = None
 
 # UI Elements
 tk.Label(app, text="Image Resizer", font=("Helvetica", 16)).pack(pady=10)
@@ -90,9 +94,6 @@ preview_label.pack(pady=10)
 
 original_size_label = tk.Label(app, text="")
 original_size_label.pack()
-
-target_size_label = tk.Label(app, text="Target: -")
-target_size_label.pack()
 
 # Run
 app.mainloop()
