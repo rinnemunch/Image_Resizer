@@ -24,7 +24,7 @@ def choose_image():
         original_size_label.config(text=f"Original: {original_width} x {original_height}")
 
         # Target size
-        target_size_label = tk.Label(app, text="Target: -")
+        target_size_label = tk.Label(app, text="New: -")
         target_size_label.pack()
 
 
@@ -41,7 +41,7 @@ def resize_image():
         width = int(width_entry.get())
         height = int(height_entry.get())
 
-        target_size_label.config(text=f"Target: {width} x {height}")
+        target_size_label.config(text=f"New: {width} x {height}")
 
         img = Image.open(image_path.get())
         print(f"Opened image: {img.format}, Size: {img.size}")
@@ -88,9 +88,9 @@ height_entry.pack()
 
 def update_target_label(*args):
     if width_entry.get().isdigit() and height_entry.get().isdigit():
-        target_size_label.config(text=f"Target: {width_entry.get()} x {height_entry.get()}")
+        target_size_label.config(text=f"New: {width_entry.get()} x {height_entry.get()}")
     else:
-        target_size_label.config(text="Target: -")
+        target_size_label.config(text="New: -")
 
 
 width_entry.bind("<KeyRelease>", update_target_label)
