@@ -76,8 +76,13 @@ height_entry.pack()
 resize_button = tk.Button(app, text="Resize & Save", state="disabled", command=resize_image)
 resize_button.pack(pady=10)
 
+# Preview image
 preview_label = tk.Label(app)
 preview_label.pack(pady=10)
+
+original_size_label = tk.Label(app, text="")
+original_size_label.pack()
+
 
 # Run
 app.mainloop()
