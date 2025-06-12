@@ -54,7 +54,7 @@ def resize_image():
 # App window
 app = tk.Tk()
 app.title("Image Resizer")
-app.geometry("400x300")
+app.geometry("500x600")
 
 # StringVars
 image_path = tk.StringVar(value="No file selected")
