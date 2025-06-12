@@ -9,6 +9,15 @@ def choose_image():
         resize_button.config(state="normal")
 
 
+def resize_image():
+    try:
+        width = int(width_entry.get())
+        height = int(height_entry.get())
+        print(f"Resizing to {width} x {height}")
+    except ValueError:
+        print("Invalid width or height.")
+
+
 # App window
 app = tk.Tk()
 app.title("Image Resizer")
@@ -31,7 +40,7 @@ tk.Label(app, text="Height:").pack()
 height_entry = tk.Entry(app)
 height_entry.pack()
 
-resize_button = tk.Button(app, text="Resize & Save", state="disabled")
+resize_button = tk.Button(app, text="Resize & Save", state="disabled", command=resize_image)
 resize_button.pack(pady=10)
 
 # Run
