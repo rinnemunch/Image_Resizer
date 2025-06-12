@@ -9,6 +9,15 @@ def choose_image():
         image_path.set(file_path)
         resize_button.config(state="normal")
 
+        # Load and resize image for preview
+        img = Image.open(file_path)
+        img.thumbnail((200, 200))  # Keep aspect ratio
+        preview_img = ImageTk.PhotoImage(img)
+
+        # Prevent garbage collection
+        preview_label.image = preview_img
+        preview_label.config(image=preview_img)
+
 
 def resize_image():
     if not image_path.get():
