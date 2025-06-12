@@ -21,6 +21,15 @@ def resize_image():
         resized_img = img.resize((width, height))
         print(f"Image resized to: {resized_img.size}")
 
+        save_path = filedialog.asksaveasfilename(
+            defaultextension=".png",
+            filetypes=[("PNG", "*.png"), ("JPEG", "*.jpg"), ("WEBP", "*.webp")]
+        )
+
+        if save_path:
+            resized_img.save(save_path)
+            print(f"Image saved to: {save_path}")
+
     except Exception as e:
         print(f"Error: {e}")
 
