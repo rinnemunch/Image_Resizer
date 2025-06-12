@@ -41,6 +41,7 @@ def resize_image():
     except Exception as e:
         messagebox.showerror("Resize Failed", f"Something went wrong:\n{str(e)}")
 
+
 # App window
 app = tk.Tk()
 app.title("Image Resizer")
@@ -65,6 +66,9 @@ height_entry.pack()
 
 resize_button = tk.Button(app, text="Resize & Save", state="disabled", command=resize_image)
 resize_button.pack(pady=10)
+
+preview_label = tk.Label(app)
+preview_label.pack(pady=10)
 
 # Run
 app.mainloop()
