@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import filedialog
+from tkinter import filedialog, messagebox
 from PIL import Image
 
 
@@ -28,7 +28,7 @@ def resize_image():
 
         if save_path:
             resized_img.save(save_path)
-            print(f"Image saved to: {save_path}")
+            messagebox.showinfo("Success", f"Image saved to:\n{save_path}")
 
     except Exception as e:
         print(f"Error: {e}")
