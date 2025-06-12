@@ -18,6 +18,10 @@ def choose_image():
         preview_label.image = preview_img
         preview_label.config(image=preview_img)
 
+        # Original image size
+        original_width, original_height = img.size
+        original_size_label.config(text=f"Original: {original_width} x {original_height}")
+
 
 def resize_image():
     if not image_path.get():
@@ -82,7 +86,6 @@ preview_label.pack(pady=10)
 
 original_size_label = tk.Label(app, text="")
 original_size_label.pack()
-
 
 # Run
 app.mainloop()
