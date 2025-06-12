@@ -1,0 +1,20 @@
+# Bytecode
+__pycache__/
+*.py[cod]
+
+# Virtual Environment
+venv/
+
+# PyCharm
+.idea/
+
+# Mac OS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Build output
+dist/
+build/
+*.spec
