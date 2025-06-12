@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import filedialog
 from PIL import Image
 
+
 def choose_image():
     file_path = filedialog.askopenfilename(filetypes=[("Image files", "*.png *.jpg *.jpeg *.webp")])
     if file_path:
@@ -14,9 +15,11 @@ def resize_image():
         width = int(width_entry.get())
         height = int(height_entry.get())
 
-        # Opens the selected image
         img = Image.open(image_path.get())
         print(f"Opened image: {img.format}, Size: {img.size}")
+
+        resized_img = img.resize((width, height))
+        print(f"Image resized to: {resized_img.size}")
 
     except Exception as e:
         print(f"Error: {e}")
