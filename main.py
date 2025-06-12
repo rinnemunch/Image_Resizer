@@ -85,6 +85,17 @@ tk.Label(app, text="Height:").pack()
 height_entry = tk.Entry(app)
 height_entry.pack()
 
+
+def update_target_label(*args):
+    if width_entry.get().isdigit() and height_entry.get().isdigit():
+        target_size_label.config(text=f"Target: {width_entry.get()} x {height_entry.get()}")
+    else:
+        target_size_label.config(text="Target: -")
+
+
+width_entry.bind("<KeyRelease>", update_target_label)
+height_entry.bind("<KeyRelease>", update_target_label)
+
 resize_button = tk.Button(app, text="Resize & Save", state="disabled", command=resize_image)
 resize_button.pack(pady=10)
 
