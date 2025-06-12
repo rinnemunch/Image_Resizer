@@ -22,6 +22,10 @@ def choose_image():
         original_width, original_height = img.size
         original_size_label.config(text=f"Original: {original_width} x {original_height}")
 
+        # Target size
+        target_size_label = tk.Label(app, text="Target: -")
+        target_size_label.pack()
+
 
 def resize_image():
     if not image_path.get():
