@@ -12,7 +12,7 @@ def choose_image():
 
         # Load and resize image for preview
         img = Image.open(file_path)
-        img.thumbnail((200, 200))  # Keep aspect ratio
+        img.thumbnail((150, 150))
         preview_img = ImageTk.PhotoImage(img)
 
         # Prevent garbage collection
@@ -25,8 +25,7 @@ def choose_image():
 
         # Target size
         target_size_label = tk.Label(app, text="New: -")
-        target_size_label.pack()
-
+        target_size_label.pack(pady=(2, 10))
 
 def resize_image():
     if not image_path.get():
@@ -134,7 +133,7 @@ preview_label = tk.Label(app)
 preview_label.pack(pady=10)
 
 original_size_label = tk.Label(app, text="")
-original_size_label.pack()
+original_size_label.pack(pady=(5, 0))
 
 
 def toggle_aspect_lock():
