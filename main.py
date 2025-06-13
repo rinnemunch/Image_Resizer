@@ -152,7 +152,9 @@ def toggle_aspect_lock():
 
 
 keep_aspect = tk.BooleanVar(value=True)
-tk.Checkbutton(app, text="Keep Aspect Ratio", variable=keep_aspect, command=toggle_aspect_lock).pack(pady=5)
+tk.Checkbutton(tools_frame, text="Keep Aspect Ratio", variable=keep_aspect, command=toggle_aspect_lock).pack(anchor="w",
+                                                                                                             padx=10,
+                                                                                                             pady=2)
 
 
 def toggle_tools():
