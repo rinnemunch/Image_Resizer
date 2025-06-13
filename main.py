@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from PIL import Image, ImageTk
+import tkinter.font as tkFont
 
 
 def choose_image():
@@ -73,37 +74,36 @@ app = tk.Tk()
 app.title("Image Resizer")
 app.geometry("500x600")
 app.configure(bg="#FFA552")
+press_start_font = tkFont.Font(family="Press Start 2P", size=8)
 
 # StringVars
 image_path = tk.StringVar(value="No file selected")
 target_size_label = None
 
 # UI Elements
-tk.Label(app, text="Image Resizer", font=("Helvetica", 16), bg="#FFA552", fg="white").pack(pady=10)
+tk.Label(app, text="Image Resizer", font=press_start_font, bg="#FFA552", fg="white").pack(pady=10)
 
 tk.Button(app, text="Choose Image", command=choose_image, bg="lightgray", fg="black").pack()
 
 tk.Label(app, textvariable=image_path, wraplength=350, bg="#FFA552", fg="white", anchor="center").pack(pady=5)
 
-
 tk.Label(app, text="Width:", bg="#FFA552", fg="white").pack(pady=(10, 2))
 width_entry = tk.Entry(app,
-    bg="#FFF5E1", fg="black",
-    insertbackground="black",
-    disabledbackground="#FFA552",
-    disabledforeground="white"
-)
+                       bg="#FFF5E1", fg="black",
+                       insertbackground="black",
+                       disabledbackground="#FFA552",
+                       disabledforeground="white"
+                       )
 width_entry.pack(pady=(0, 10))
 
 tk.Label(app, text="Height:", bg="#FFA552", fg="white").pack(pady=(10, 2))
 height_entry = tk.Entry(app,
-    bg="#FFF5E1", fg="black",
-    insertbackground="black",
-    disabledbackground="#FFA552",
-    disabledforeground="white"
-)
+                        bg="#FFF5E1", fg="black",
+                        insertbackground="black",
+                        disabledbackground="#FFA552",
+                        disabledforeground="white"
+                        )
 height_entry.pack(pady=(0, 10))
-
 
 target_size_label = tk.Label(app, text="New: -")
 target_size_label.pack(pady=(2, 10))
@@ -165,9 +165,15 @@ def toggle_aspect_lock():
     update_target_label()
 
 
+# Tools
 keep_aspect = tk.BooleanVar(value=True)
 tk.Checkbutton(tools_frame, text="Keep Aspect Ratio", variable=keep_aspect, command=toggle_aspect_lock,
-               bg="lightgray", fg="black", selectcolor="lightgray", activebackground="lightgray").pack(anchor="w", padx=10, pady=2)
+               bg="lightgray", fg="black", selectcolor="lightgray", activebackground="lightgray").pack(anchor="w",
+                                                                                                       padx=10, pady=2)
+tk.Label(tools_frame, text="Scale by %:", bg="lightgray", fg="black").pack(anchor="w", padx=10)
+scale_entry = tk.Entry(tools_frame, width=10)
+scale_entry.pack(anchor="w", padx=10, pady=(0, 10))
+
 
 def toggle_tools():
     if tools_frame.winfo_ismapped():
@@ -183,6 +189,8 @@ tools_button.pack(pady=5)
 
 toggle_aspect_lock()
 update_target_label()
+
+print(tkFont.families())
 
 # Run
 app.mainloop()
