@@ -96,9 +96,30 @@ height_entry.pack()
 
 
 def update_target_label(*args):
-    if width_entry.get().isdigit() and height_entry.get().isdigit():
-        target_size_label.config(text=f"New: {width_entry.get()} x {height_entry.get()}")
-    else:
+    if target_size_label is None or not image_path.get():
+        return
+
+    try:
+        img = Image.open(image_path.get())
+        orig_w, orig_h = img.size
+
+        if keep_aspect.get():
+            if width_entry.get().isdigit():
+                width = int(width_entry.get())
+                height = int(orig_h * (width / orig_w))
+                target_size_label.config(text=f"New: {width} x {int(height)}")
+            elif height_entry.get().isdigit():
+                height = int(height_entry.get())
+                width = int(orig_w * (height / orig_h))
+                target_size_label.config(text=f"New: {int(width)} x {height}")
+            else:
+                target_size_label.config(text="New: -")
+        else:
+            if width_entry.get().isdigit() and height_entry.get().isdigit():
+                target_size_label.config(text=f"New: {width_entry.get()} x {height_entry.get()}")
+            else:
+                target_size_label.config(text="New: -")
+    except:
         target_size_label.config(text="New: -")
 
 
@@ -135,6 +156,7 @@ keep_aspect = tk.BooleanVar(value=True)
 tk.Checkbutton(app, text="Keep Aspect Ratio", variable=keep_aspect, command=toggle_aspect_lock).pack(pady=5)
 
 toggle_aspect_lock()
+update_target_label()
 
 # Run
 app.mainloop()
