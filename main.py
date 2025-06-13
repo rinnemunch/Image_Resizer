@@ -98,6 +98,7 @@ tools_frame = tk.Frame(app)
 tools_frame.pack(pady=5)
 tools_frame.pack_forget()
 
+
 def update_target_label(*args):
     if target_size_label is None or not image_path.get():
         return
@@ -152,6 +153,19 @@ def toggle_aspect_lock():
 
 keep_aspect = tk.BooleanVar(value=True)
 tk.Checkbutton(app, text="Keep Aspect Ratio", variable=keep_aspect, command=toggle_aspect_lock).pack(pady=5)
+
+
+def toggle_tools():
+    if tools_frame.winfo_ismapped():
+        tools_frame.pack_forget()
+        tools_button.config(text="Tools ▼")
+    else:
+        tools_frame.pack()
+        tools_button.config(text="Tools ▲")
+
+
+tools_button = tk.Button(app, text="Tools ▼", command=toggle_tools)
+tools_button.pack(pady=5)
 
 toggle_aspect_lock()
 update_target_label()
