@@ -87,11 +87,21 @@ tk.Label(app, textvariable=image_path, wraplength=350, bg="#FFA552", fg="white",
 
 
 tk.Label(app, text="Width:", bg="#FFA552", fg="white").pack(pady=(10, 2))
-width_entry = tk.Entry(app)
+width_entry = tk.Entry(app,
+    bg="#FFF5E1", fg="black",
+    insertbackground="black",
+    disabledbackground="#FFA552",
+    disabledforeground="white"
+)
 width_entry.pack(pady=(0, 10))
 
 tk.Label(app, text="Height:", bg="#FFA552", fg="white").pack(pady=(10, 2))
-height_entry = tk.Entry(app)
+height_entry = tk.Entry(app,
+    bg="#FFF5E1", fg="black",
+    insertbackground="black",
+    disabledbackground="#FFA552",
+    disabledforeground="white"
+)
 height_entry.pack(pady=(0, 10))
 
 
