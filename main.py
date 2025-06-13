@@ -70,6 +70,7 @@ def resize_image():
     except Exception as e:
         messagebox.showerror("Resize Failed", f"Something went wrong:\n{str(e)}")
 
+
 # App window
 app = tk.Tk()
 app.title("Image Resizer")
@@ -114,8 +115,26 @@ preview_label.pack(pady=10)
 original_size_label = tk.Label(app, text="")
 original_size_label.pack()
 
+
+def toggle_aspect_lock():
+    if keep_aspect.get():
+
+        if width_entry.get():
+            height_entry.config(state="disabled")
+            width_entry.config(state="normal")
+        else:
+            width_entry.config(state="disabled")
+            height_entry.config(state="normal")
+    else:
+        # Enable both if aspect ratio is off
+        width_entry.config(state="normal")
+        height_entry.config(state="normal")
+
+
 keep_aspect = tk.BooleanVar(value=True)
-tk.Checkbutton(app, text="Keep Aspect Ratio", variable=keep_aspect).pack(pady=5)
+tk.Checkbutton(app, text="Keep Aspect Ratio", variable=keep_aspect, command=toggle_aspect_lock).pack(pady=5)
+
+toggle_aspect_lock()
 
 # Run
 app.mainloop()
