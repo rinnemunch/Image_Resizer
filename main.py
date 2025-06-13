@@ -4,7 +4,6 @@ from PIL import Image, ImageTk
 
 
 def choose_image():
-    global target_size_label
     file_path = filedialog.askopenfilename(filetypes=[("Image files", "*.png *.jpg *.jpeg *.webp")])
     if file_path:
         image_path.set(file_path)
@@ -23,9 +22,8 @@ def choose_image():
         original_width, original_height = img.size
         original_size_label.config(text=f"Original: {original_width} x {original_height}")
 
-        # Target size
-        target_size_label = tk.Label(app, text="New: -")
-        target_size_label.pack(pady=(2, 10))
+        update_target_label()
+
 
 def resize_image():
     if not image_path.get():
@@ -93,6 +91,9 @@ tk.Label(app, text="Height:").pack()
 height_entry = tk.Entry(app)
 height_entry.pack()
 
+target_size_label = tk.Label(app, text="New: -")
+target_size_label.pack(pady=(2, 10))
+
 
 def update_target_label(*args):
     if target_size_label is None or not image_path.get():
@@ -138,17 +139,12 @@ original_size_label.pack(pady=(5, 0))
 
 def toggle_aspect_lock():
     if keep_aspect.get():
-
-        if width_entry.get():
-            height_entry.config(state="disabled")
-            width_entry.config(state="normal")
-        else:
-            width_entry.config(state="disabled")
-            height_entry.config(state="normal")
+        width_entry.config(state="normal")
+        height_entry.config(state="disabled")
     else:
-        # Enable both if aspect ratio is off
         width_entry.config(state="normal")
         height_entry.config(state="normal")
+    update_target_label()
 
 
 keep_aspect = tk.BooleanVar(value=True)
