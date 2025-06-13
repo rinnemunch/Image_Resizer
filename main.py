@@ -10,12 +10,11 @@ def choose_image():
         image_path.set(file_path)
         resize_button.config(state="normal")
 
-        # Load and resize image for preview
         img = Image.open(file_path)
-        img.thumbnail((150, 150))
-        preview_img = ImageTk.PhotoImage(img)
+        preview = img.copy()
+        preview.thumbnail((150, 150))
+        preview_img = ImageTk.PhotoImage(preview)
 
-        # Prevent garbage collection
         preview_label.image = preview_img
         preview_label.config(image=preview_img)
 
@@ -35,23 +34,27 @@ def resize_image():
         img = Image.open(image_path.get())
         orig_w, orig_h = img.size
 
-        if keep_aspect.get():
-
-            if width_entry.get().isdigit():
-                width = int(width_entry.get())
-                height = int(orig_h * (width / orig_w))
-            elif height_entry.get().isdigit():
-                height = int(height_entry.get())
-                width = int(orig_w * (height / orig_h))
-            else:
-                messagebox.showerror("Missing Input", "Enter width or height to maintain aspect ratio.")
-                return
+        if scale_entry.get().isdigit():
+            percent = int(scale_entry.get())
+            width = int(orig_w * (percent / 100))
+            height = int(orig_h * (percent / 100))
         else:
-            if not width_entry.get().isdigit() or not height_entry.get().isdigit():
-                messagebox.showerror("Missing Input", "Please enter both width and height.")
-                return
-            width = int(width_entry.get())
-            height = int(height_entry.get())
+            if keep_aspect.get():
+                if width_entry.get().isdigit():
+                    width = int(width_entry.get())
+                    height = int(orig_h * (width / orig_w))
+                elif height_entry.get().isdigit():
+                    height = int(height_entry.get())
+                    width = int(orig_w * (height / orig_h))
+                else:
+                    messagebox.showerror("Missing Input", "Enter width or height to maintain aspect ratio.")
+                    return
+            else:
+                if not width_entry.get().isdigit() or not height_entry.get().isdigit():
+                    messagebox.showerror("Missing Input", "Please enter both width and height.")
+                    return
+                width = int(width_entry.get())
+                height = int(height_entry.get())
 
         target_size_label.config(text=f"New: {width} x {height}")
 
