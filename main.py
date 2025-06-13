@@ -85,13 +85,14 @@ tk.Button(app, text="Choose Image", command=choose_image, bg="white", fg="#FFA55
 
 tk.Label(app, textvariable=image_path, wraplength=350).pack(pady=5)
 
-tk.Label(app, text="Width:").pack()
+tk.Label(app, text="Width:", bg="#FFA552", fg="white").pack(pady=(10, 2))
 width_entry = tk.Entry(app)
-width_entry.pack()
+width_entry.pack(pady=(0, 10))
 
-tk.Label(app, text="Height:").pack()
+tk.Label(app, text="Height:", bg="#FFA552", fg="white").pack(pady=(10, 2))
 height_entry = tk.Entry(app)
-height_entry.pack()
+height_entry.pack(pady=(0, 10))
+
 
 target_size_label = tk.Label(app, text="New: -")
 target_size_label.pack(pady=(2, 10))
