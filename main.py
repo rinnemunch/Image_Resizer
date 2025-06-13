@@ -72,15 +72,17 @@ def resize_image():
 app = tk.Tk()
 app.title("Image Resizer")
 app.geometry("500x600")
+app.configure(bg="#FFA552")
 
 # StringVars
 image_path = tk.StringVar(value="No file selected")
 target_size_label = None
 
 # UI Elements
-tk.Label(app, text="Image Resizer", font=("Helvetica", 16)).pack(pady=10)
+tk.Label(app, text="Image Resizer", font=("Helvetica", 16), bg="#FFA552", fg="white").pack(pady=10)
 
-tk.Button(app, text="Choose Image", command=choose_image).pack()
+tk.Button(app, text="Choose Image", command=choose_image, bg="white", fg="#FFA552").pack()
+
 tk.Label(app, textvariable=image_path, wraplength=350).pack(pady=5)
 
 tk.Label(app, text="Width:").pack()
@@ -152,9 +154,9 @@ def toggle_aspect_lock():
 
 
 keep_aspect = tk.BooleanVar(value=True)
-tk.Checkbutton(tools_frame, text="Keep Aspect Ratio", variable=keep_aspect, command=toggle_aspect_lock).pack(anchor="w",
-                                                                                                             padx=10,
-                                                                                                             pady=2)
+tk.Checkbutton(tools_frame, text="Keep Aspect Ratio", variable=keep_aspect, command=toggle_aspect_lock,
+               bg="#FFA552", fg="white", selectcolor="#FFA552", activebackground="#FFA552").pack(anchor="w", padx=10,
+                                                                                                 pady=2)
 
 
 def toggle_tools():
