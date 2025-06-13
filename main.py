@@ -33,22 +33,31 @@ def resize_image():
         messagebox.showerror("No Image", "Please choose an image before resizing.")
         return
 
-    if not width_entry.get() or not height_entry.get():
-        messagebox.showerror("Missing Input", "Please enter both width and height.")
-        return
-
     try:
-        width = int(width_entry.get())
-        height = int(height_entry.get())
+        img = Image.open(image_path.get())
+        orig_w, orig_h = img.size
+
+        if keep_aspect.get():
+
+            if width_entry.get().isdigit():
+                width = int(width_entry.get())
+                height = int(orig_h * (width / orig_w))
+            elif height_entry.get().isdigit():
+                height = int(height_entry.get())
+                width = int(orig_w * (height / orig_h))
+            else:
+                messagebox.showerror("Missing Input", "Enter width or height to maintain aspect ratio.")
+                return
+        else:
+            if not width_entry.get().isdigit() or not height_entry.get().isdigit():
+                messagebox.showerror("Missing Input", "Please enter both width and height.")
+                return
+            width = int(width_entry.get())
+            height = int(height_entry.get())
 
         target_size_label.config(text=f"New: {width} x {height}")
 
-        img = Image.open(image_path.get())
-        print(f"Opened image: {img.format}, Size: {img.size}")
-
         resized_img = img.resize((width, height))
-        print(f"Image resized to: {resized_img.size}")
-
         save_path = filedialog.asksaveasfilename(
             defaultextension=".png",
             filetypes=[("PNG", "*.png"), ("JPEG", "*.jpg"), ("WEBP", "*.webp")]
@@ -60,7 +69,6 @@ def resize_image():
 
     except Exception as e:
         messagebox.showerror("Resize Failed", f"Something went wrong:\n{str(e)}")
-
 
 # App window
 app = tk.Tk()
