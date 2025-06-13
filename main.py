@@ -84,7 +84,7 @@ image_path = tk.StringVar(value="No file selected")
 target_size_label = None
 
 # UI Elements
-tk.Label(app, text="Image Resizer", font=press_start_font, bg="#FFA552", fg="white").pack(pady=10)
+tk.Label(app, text="Image Resizer", font=("Helvetica", 20, "bold"), bg="#FFA552", fg="white").pack(pady=(20, 10))
 
 tk.Button(app, text="Choose Image", command=choose_image, bg="lightgray", fg="black").pack()
 
