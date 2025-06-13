@@ -106,5 +106,8 @@ preview_label.pack(pady=10)
 original_size_label = tk.Label(app, text="")
 original_size_label.pack()
 
+keep_aspect = tk.BooleanVar(value=True)
+tk.Checkbutton(app, text="Keep Aspect Ratio", variable=keep_aspect).pack(pady=5)
+
 # Run
 app.mainloop()
