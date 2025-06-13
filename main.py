@@ -94,6 +94,9 @@ height_entry.pack()
 target_size_label = tk.Label(app, text="New: -")
 target_size_label.pack(pady=(2, 10))
 
+tools_frame = tk.Frame(app)
+tools_frame.pack(pady=5)
+tools_frame.pack_forget()
 
 def update_target_label(*args):
     if target_size_label is None or not image_path.get():
